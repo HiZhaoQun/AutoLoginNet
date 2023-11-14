@@ -1,7 +1,9 @@
 import json
 import os
 
-ConfigJsonName = 'config1.json'
+import easygui
+
+ConfigJsonName = 'config.json'
 filename = ConfigJsonName
 
 
@@ -19,8 +21,6 @@ class Config:
             self.GetConfigJson()
         else:
             self.FirstTimeRun()
-
-
 
     def FirstTimeRun(self):
         with open(ConfigJsonName, 'w') as f:
@@ -72,4 +72,22 @@ class Config:
             f.seek(0)  # 将文件指针移动到文件开头
             f.truncate()  # 清空文件内容
             json.dump(cong, f)
+
+    def SetConfigJsonByUi(self):
+        def get_credentials(username, password, default_url):
+            msg = "请输入账号、密码和目标网址:"
+            title = "登录信息"
+            field_names = ["账号", "密码", "目标网址"]
+            field_values = easygui.multenterbox(
+                msg, title, field_names, [username, password, default_url])
+            return field_values
+
+        credentials = get_credentials(self.username, self.password, self.url)
+        if credentials is not None:
+            username, password, target_url = credentials
+            self.SetConfigJson('username', username)
+            self.SetConfigJson('password', password)
+            self.SetConfigJson('url', target_url)
+            self.SetConfigJson('ui', False)
+        self.GetConfigJson()
 
