@@ -23,20 +23,19 @@ def is_user_logged_in():
         return False
 
 
-def RegisterRegistry(cong):
-    if cong.first_run:
-        try:
-            # 打开注册表项
-            key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, '''Software\Microsoft\Windows\CurrentVersion\Run''', 0,
-                                 winreg.KEY_ALL_ACCESS)
-            # 设置程序的路径作为键值
-            current_file = os.path.abspath(__file__)
-            winreg.SetValueEx(key, "MyProgram", 0, winreg.REG_SZ, current_file)
-            # 关闭注册表项
-            winreg.CloseKey(key)
-            notification.notify(title=f'注册表成功', message='success', timeout=10)
-        except Exception as e:
-            notification.notify(title=f'注册表失败', message='false', timeout=10)
-        finally:
-            pass
+def RegisterRegistry():
+    try:
+        # 打开注册表项
+        key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, '''Software\Microsoft\Windows\CurrentVersion\Run''', 0,
+                             winreg.KEY_ALL_ACCESS)
+        # 设置程序的路径作为键值
+        current_file = os.path.abspath(__file__)
+        winreg.SetValueEx(key, "MyProgram", 0, winreg.REG_SZ, current_file)
+        # 关闭注册表项
+        winreg.CloseKey(key)
+        notification.notify(title=f'注册表成功', message='success', timeout=10)
+    except Exception as e:
+        notification.notify(title=f'注册表失败', message='false', timeout=10)
+    finally:
+        pass
 

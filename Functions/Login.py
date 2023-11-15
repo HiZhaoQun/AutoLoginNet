@@ -70,8 +70,9 @@ def PutAndCheck(brower, username, password):
 
 def Login(username, password, url):
     options = webdriver.EdgeOptions()
-    options.add_experimental_option('excludeSwitches', ['enable-logging'])
-    # options.add_argument('--headless')
+    options.add_argument('--headless')
+    # options.add_experimental_option('excludeSwitches', ['enable-logging'])
+    # options.add_argument('--headless --disable-gpu --no-sandbox')
     # options.add_argument('-ignore-certificate-errors')
     # options.add_argument('-ignore -ssl-errors')
     # op = webdriver.EdgeOptions()

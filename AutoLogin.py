@@ -4,8 +4,9 @@ from Functions.CtrlWin import *
 
 
 def Run(config):
-
-    _note = ''
+    # 全局变量
+    note = ''
+    title = ''
     # 获取配置信息并进行登录
     for i in range(2):
         # 判断是否首次使用ui登录，如果是， 通过ui填入登录信息
@@ -13,22 +14,24 @@ def Run(config):
             config.SetConfigJsonByUi()
         end = Login(config.username, config.password, config.url)
         if end:
-            _note = '登录成功'
+            note = '登录成功'
             title = f'登录到{config.url[:20]}'
             break
         else:
-            _note = '登录失败'
+            note = '登录失败'
             title = f'登录到{config.url[:20]}'
             if config.first_run:
                 config.SetConfigJson('ui', True)
     # 将登录结果通知到win桌面
-    WinNotice(title, _note)
+    WinNotice(title, note)
 
 
 if __name__ == '__main__':
+    global cong
     try:
         cong = Config()
-        RegisterRegistry(cong)
+        if cong.first_run:
+            RegisterRegistry()
         Run(cong)
     except:
         WinNotice('系统错误', '程序出现未知错误')
