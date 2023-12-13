@@ -30,11 +30,8 @@ if __name__ == '__main__':
     global cong
     try:
         cong = Config()
-        if cong.first_run:
-            RegisterRegistry()
         Run(cong)
     except:
         WinNotice('系统错误', '程序出现未知错误')
-    # cong.SetConfigJson('ui', False)
     cong.SetConfigJson('first_run', False)
 
