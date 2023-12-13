@@ -69,16 +69,16 @@ def PutAndCheck(brower, username, password):
     return False
 
 def Login(username, password, url):
-    options = webdriver.EdgeOptions()
-    options.add_argument('--headless')
+    # options = webdriver.EdgeOptions()
+    # options.add_argument('--headless')
     # options.add_experimental_option('excludeSwitches', ['enable-logging'])
     # options.add_argument('--headless --disable-gpu --no-sandbox')
     # options.add_argument('-ignore-certificate-errors')
     # options.add_argument('-ignore -ssl-errors')
     # op = webdriver.EdgeOptions()
     # op.add_experimental_option("detach", True)
-    brower = webdriver.Edge(options=options)
-    # brower = webdriver.Edge()
+    # brower = webdriver.Edge(options=options)
+    brower = webdriver.Edge()
     brower.set_page_load_timeout(5)
 
     for _ in range(2):
