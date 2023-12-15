@@ -69,7 +69,7 @@ def PutAndCheck(brower, username, password):
     return False
 
 def Login(username, password, url):
-    # options = webdriver.EdgeOptions()
+    options = webdriver.EdgeOptions()
     # options.add_argument('--headless')
     # options.add_experimental_option('excludeSwitches', ['enable-logging'])
     # options.add_argument('--headless --disable-gpu --no-sandbox')
@@ -77,8 +77,11 @@ def Login(username, password, url):
     # options.add_argument('-ignore -ssl-errors')
     # op = webdriver.EdgeOptions()
     # op.add_experimental_option("detach", True)
-    # brower = webdriver.Edge(options=options)
-    brower = webdriver.Edge()
+    options.add_argument("start-maximized")
+    options.add_argument("--disable-extensions")
+    path = ".\Sources\msedgedriver.exe"
+    brower = webdriver.Edge(executable_path=path , options=options)
+    # brower = webdriver.Edge()
     brower.set_page_load_timeout(5)
 
     for _ in range(2):
