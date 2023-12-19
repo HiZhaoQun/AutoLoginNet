@@ -1,16 +1,11 @@
 import winreg
 import os
-import threading
 import win32api
 from plyer import notification
 
 
-def WinNotice(title, message):
-    def notif():
-        notification.notify(title=title, message=message, timeout=5)
-
-    notification_thread = threading.Thread(target=notif)
-    notification_thread.start()
+def win_notice(title, message):
+    notification.notify(title=title, message=message, timeout=5)
 
 
 def is_user_logged_in():
@@ -38,4 +33,3 @@ def RegisterRegistry():
         notification.notify(title=f'注册表失败', message='false', timeout=10)
     finally:
         pass
-

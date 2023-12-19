@@ -1,6 +1,5 @@
 import json
 import os
-
 import easygui
 
 ConfigJsonName = 'config.json'
