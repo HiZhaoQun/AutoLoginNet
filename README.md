@@ -16,7 +16,7 @@
 文件打包使用pyinstaller进行文件打包，打包命令为：
 
 ```
- pyinstaller -i loge.ico -n 自动登录 -w -D AutoLogin.py
+ pyinstaller -i Sources\loge.ico -n 自动登录 -w -D AutoLogin.py
 
 ```
 
